@@ -1,0 +1,63 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script src="first.js"></script>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOM Example</title>
+</head>
+<body>
+  <h1 id="title">Original Text</h1>
+
+<!-- 
+  <button onclick="changeText()">Click Me</button>
+  <script>
+    function changeText() {
+      document.getElementById("title").innerText = "Hello, World!";
+      
+    }
+  </script>
+
+  <button onclick="changeText1()">Hello, World!</button>
+    <script>
+    function changeText1() {
+      document.getElementById("title").innerText = "Click Me";
+    }
+  </script> -->
+
+
+<h1 id="title">Click Me</h1>
+<button onclick="changeText3()">Click Me</button>
+
+<script>
+  let key = 0;  // Starting value
+
+  function changeText3() {
+    const title = document.getElementById("title");
+
+    switch (key) {
+      case 0:
+        title.innerText = "Hello, World!";
+        key = 1;
+        break;
+
+      case 1:
+        title.innerText = "Click Me";
+        key = 0;      
+        break;
+    }
+  }
+</script>
+
+</body>
+<script src="first.js"></script>
+</html>
