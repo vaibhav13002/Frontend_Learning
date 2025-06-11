@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+  /* 1.42 */
+
+#parent{
+    height: 100%;
+    width: 100%;
+    background-color: skyblue;
+    display:flex;
+    /* position: absolute;
+    margin-top: 50%;
+    margin-left: 50%;
+    transform: translate(-50%,-50%); */
+    align-items: center;   /* y-axis me center krne ke liye */
+    justify-content:center ; /* x-axis me center krne ke liye */
+    /* space between = sab kee beech me distribute hojayega white-space
+    space around = 3no ko equal space de dengey
+     */
+}
+#child1{
+    height: 100px;
+    width: 100px;
+    background-color: rgb(243, 75, 75);
+    margin-left: 10px;
+}
+#child2{
+    height: 100px;
+    width: 100px;
+    background-color: greenyellow;
+    margin-left: 10px;
+}
+#child3{
+    height: 100px;
+    width: 100px;
+    background-color: blueviolet;
+    margin-left: 10px;
+}
