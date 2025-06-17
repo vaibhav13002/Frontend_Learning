@@ -62,3 +62,6 @@ Jab bhi koi event (jaise keydown) hota hai, browser ek event object banata hai.
 Yeh object event ke baare me saari information rakhta hai (kaunsa key dabaya, kaunsa button click hua, etc.).
 Aap is object ko function ke parameter ke roop me le sakte hain.
 (Yahan e likha hai, aap event bhi likh sakte hain.) */
+
+//////////////////PigGame//////////////////
+
