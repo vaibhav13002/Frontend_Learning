@@ -151,5 +151,8 @@ Uska this kya hai? — Apne parent, yaani greet() function ka this
 Aur greet() method kisne call kiya? → user.greet()
 Isiliye this.name → user.name = "Vaibhav"  */
 
+/////////Deep and Shallow Copy /////
 
+/* Shallow Copy:- Sirf ek level tak copy hoti hai. Nested objects ka reference same rehta hai.
+Deep Copy:- 	Pure object ke andar ke andar tak copy hoti hai. Har level pe naye reference bante hain. */
 
