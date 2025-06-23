@@ -4,7 +4,7 @@ PI = "Vaibhav";
 // console.log(PI);
 
 // type of , Variables, null, Undefined
-//remember nul is a Object in JAVASCRIPT, this is bug which is not resolved till date for legacy resons.
+//remember null is a Object in JAVASCRIPT, this is bug which is not resolved till date for legacy resons.
 let variable1='';
 let variable2 = 0;
 let variable3=null;

@@ -20,7 +20,7 @@ element.classList.toggle("className") — class ho toh hataata hai, nahi ho toh 
 
  ///////////////////////////
 //  btnsOpenModal[i].addEventListener("click",function(){
-// Node list ko ek ek krke iterate kr rhe h and event lisner laga rhe h taki each button ko function de sakey
+// Node list ko ek ek krke iterate kr rhe h and event listener laga rhe h taki each button ko function de sakey
 
 /* z-index ek CSS property hai jo decide karti hai ki konsi element upar dikhegi aur konsi neeche, jab do ya zyada elements ek dusre ke upar overlap kar rahe ho.
 Higher z-index → element upar dikhega

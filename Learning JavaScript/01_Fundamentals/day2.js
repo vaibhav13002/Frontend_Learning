@@ -1,5 +1,5 @@
 // 10
-////// Template literals
+//// Template literals
 // const name = "Vaibhav";
 // const String = `Hi My name is ${name} Mishra`
 // console.log(String);
@@ -27,16 +27,26 @@
 // console.log(10 + convertNew);  // since it is NAN , so nothing will happen
 
 // console.log('5' - 10);
+/////////////////////////////////////////////////////////
 // console.log('5' + 10);
-// console.log('10'-'3'-1);
+// console.log(typeof ('10'-'3'-1));  // aisa sahi h// aisa likhne pr NaN ayegatypeof '10'-'3'-1
+/* Isme typeof '10' sabse pehle evaluate hoga (kyunki typeof ek unary operator hai).
+👉 typeof '10' ka matlab hai: '10' ka data type kya hai?
+👉 '10' ek string hai.
+👉 Toh typeof '10' ka result hoga: 'string' (ek string value).
+Jab JS mein - operator use karte ho aur operands string ho, toh JS koshish karta hai unko number banane ki.
+❌ 'string' ko number mein convert karne ki koshish karega -> NaN (kyunki 'string' koi valid number nahi hai)
+❌ '3' ko number mein convert karega -> 3
+NaN - 1
+NaN ka koi arithmetic result bhi NaN hi hota hai. */
 
 // let n = '1' + 1;
 // console.log(n-'1');
 
 // ////falsy Values
-// console.log(Boolean({}));
+// console.log(Boolean({}));  //  JavaScript mein object hamesha truthy hota hai, chahe wo empty ho ya filled.
 // console.log(Boolean(``));
-// console.log(Boolean(`${{}}`));
+// console.log(Boolean(`${{}}`)); // true → "[object Object]" is a non-empty string, so truthy
 
 //// Loose and Strict Compare == vs ===
 // const num = prompt("what is your age");
@@ -82,35 +92,35 @@
 
 
 
-// console.log(withoutReturn());   // hoisting
+// console.log(withoutReturn());   // hoisting, only possible for Normal function, not with function stored in variables, arrow function
 // // if there is not return in function, bydefault it returns to undefined
 // function withoutReturn(){
 //     console.log("Function without Return");
 // }
-// console.log(withoutReturn());
+// withoutReturn();
 
 
 //////Objects
 
-// const Vaibhav = {
-//   firstName : "Vaibhav",
-//   lastName : "Mishra",
-//   age : 23,
-//   job : "Software developer",
-//   friends : ["Tyson" , "Max" , "Kai"],
-//   birthYear : 2002,
-//   // calcAge : function(birthYear){
-//   //   return 2025 - birthYear;
-//   // }
-//   // using this
-//     calcAge : function(){
-//     return 2025 - this.birthYear;
-//   },
-//   hasDrivingLicense : true,
-//   getSummary : function(){
-//     return `${this.firstName} is a ${this.calcAge()}-year old ${this.job}, and he has ${this.hasDrivingLicense ? "a" : "not"} driver's license `;
-//   }
-// };
+const Vaibhav = {
+  firstName : "Vaibhav",
+  lastName : "Mishra",
+  age : 23,
+  job : "Software developer",
+  friends : ["Tyson" , "Max" , "Kai"],
+  birthYear : 2002,
+  // calcAge : function(birthYear){
+  //   return 2025 - birthYear;
+  // }
+  // using this
+    calcAge : function(){
+    return 2025 - this.birthYear;
+  },
+  hasDrivingLicense : true,
+  getSummary : function(){
+    return `${this.firstName} is a ${this.calcAge()}-year old ${this.job}, and he has ${this.hasDrivingLicense ? "a" : "not"} driver's license `;
+  }
+};
 // Vaibhav is a 23-year old Software Developer, and he has a/not driver's license 
 // console.log(Vaibhav);
 // console.log(Vaibhav['lastName']);
@@ -122,8 +132,9 @@
 // console.log(`${Vaibhav["firstName"]} has ${Vaibhav.friends.length} friends and his best friend is ${Vaibhav.friends[0]}`);
 
 ////Function bounded with object is a Method
-// console.log(Vaibhav.calcAge(2002));
-// console.log(Vaibhav["calcAge"](2002));
+console.log(Vaibhav.calcAge(2002));
+console.log(Vaibhav["calcAge"](2002));
+console.log(typeof (Vaibhav.calcAge));
 
 // using this
 // console.log(Vaibhav.calcAge());

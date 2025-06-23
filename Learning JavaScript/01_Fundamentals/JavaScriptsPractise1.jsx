@@ -5,10 +5,17 @@
 
 
 // let a = { x: 10 };
-// let b = { ...a }; // Shallow copy
+// let b = { ...a }; // Shallow copy  x: 10 ek primitive value hai (number) → isliye value copy hui, reference nahi copy hua.
 // b.x = 20;
 // console.log(a.x); // 10
 // console.log(b.x); // 20
+// ///example 2
+// let a = { x: { y: 10 } };
+// let b = { ...a };
+
+// b.x.y = 20;
+
+console.log(a.x.y);  // 20 (kyunki yeh nested object ka reference copy hua hai)
 
 
 /// Data type conversion
