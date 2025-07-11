@@ -1,3 +1,5 @@
+////////// From Video 1 - 17 ////////
+
 /* .innerHTML kisi HTML element ke andar ka poora HTML content read ya update karne ke liye use hota hai.
 element.innerHTML       // Get content
 element.innerHTML = "new HTML";   // Set/replace content
