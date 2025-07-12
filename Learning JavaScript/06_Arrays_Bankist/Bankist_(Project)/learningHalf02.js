@@ -30,15 +30,15 @@ console.log(user1); // { name: "Ravi", id: 2 }
 Q: Callback function ko event object kaise milta hai?
 
 A: JavaScript ka browser engine (like Chrome's V8) jab kisi event ko trigger karta hai, tab wo automatically event listener callback function me ek event object pass karta hai — jo us event ke baare me saari details deta hai. */
-
+/*
 const input = document.querySelector("input");
 
 input.addEventListener("input", function (e) {
   console.log("You typed:", e.target.value);
 });
+*/
 
-
-  e.preventDefault(); // this prevents the page to get reload after form submition
+  // e.preventDefault(); // this prevents the page to get reload after form submition
 
 //////////////
 // Optional Chaining ?. kya hota hai?
@@ -97,3 +97,46 @@ if (index !== -1) {
 }
 
 console.log(names); // ["Vaibhav", "Amit"]
+
+//////////////.flat()
+const arr3 = [[[1,[2]],3],4,[5,6]];
+console.log(arr3.flat());
+
+/////////////////////.map ka usecase with .flat()
+// sab acc se movements of array ko extract ke ek variable me store krna 
+const account1 = {
+  owner: "Jonas Schmedtmann",
+  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  interestRate: 1.2, // %
+  pin: 1111,
+  type: "premium",
+};
+
+const account2 = {
+  owner: "Jessica Davis",
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5,
+  pin: 2222,
+  type: "standard",
+};
+
+const account3 = {
+  owner: "Steven Thomas Williams",
+  movements: [200, -200, 340, -300, -20, 50, 400, -460],
+  interestRate: 0.7,
+  pin: 3333,
+  type: "premium",
+};
+
+const account4 = {
+  owner: "Sarah Smith",
+  movements: [430, 1000, 700, 50, 90],
+  interestRate: 1,
+  pin: 4444,
+  type: "basic",
+};
+
+const accounts = [account1, account2, account3, account4];
+
+const accountMovements = accounts.map(acc => acc.movements);
+console.log(accountMovements.flat());  // sab data ek single array
