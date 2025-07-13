@@ -66,9 +66,11 @@ const inputClosePin = document.querySelector(".form__input--pin");
 
 /////////////////////////////////////////////////
 // Functions
-const displayMovements = function (movements) {
+const displayMovements = function (movements,sort = false) {
   containerMovements.innerHTML = " ";
-  movements.forEach(function (mov, i) {
+  const movs =sort ? movements.slice().sort((a,b)=> a-b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `<div class="movements__row">
           <div class="movements__type movements__type--${type}">${
@@ -197,6 +199,16 @@ btnClose.addEventListener("click", function (e) {
   }
   inputCloseUsername.value=inputClosePin.value="";
 });
+//Sort button
+let sorted = false;  // stores the state of sort button , so that when clicked again it can go back in previous state,false means print movements as written in ternary operator
+btnSort.addEventListener("click",function(e){
+  e.preventDefault();
+  displayMovements(currentAccount.movements,!sorted);
+  sorted = !sorted;
+})
+
+
+
 /////////////// Lectures Learning////////////////
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // const deposits = movements.filter(function(mov,i,arr){
@@ -221,4 +233,13 @@ const totalDeposits = movements.filter(mov => mov > 0).map((mov,index,arr) =>{
   return mov * euroToUsd
 }).reduce((acc,mov)=> acc+mov,0);
 console.log(totalDeposits);
+*/
+
+// .from() with map and replace
+/*
+labelBalance.addEventListener("click",function(){
+  const labelUi = Array.from(document.querySelectorAll(".movements__value"))
+  console.log(labelUi.map(el => el.textContent.replace("€","")));
+});
+isme humne nodelist select kiya jo ki array tha hi nhi and usko aray banay and uspr baki array ke methods then use kiye
 */
