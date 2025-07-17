@@ -92,23 +92,28 @@ const inputClosePin = document.querySelector(".form__input--pin");
 // Functions
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = " ";
-  const movs = sort
-    ? acc.movements.slice().sort((a, b) => a - b)
-    : acc.movements;
+  const combinedMovsDates = acc.movements.map((mov, i) => ({
+    movement: mov,
+    movementDate: acc.movementsDates.at(i),
+  }));
 
-  movs.forEach(function (mov, i) {
-    const type = mov > 0 ? "deposit" : "withdrawal";
-    const date = new Date(acc.movementsDates[i]);
+  if (sort) combinedMovsDates.sort((a, b) => a.movement - b.movement);
+
+  combinedMovsDates.forEach(function (obj, i) {
+    const { movement, movementDate } = obj;
+    const type = movement > 0 ? "deposit" : "withdrawal";
+
+    const date = new Date(movementDate);
     const day = `${date.getDate()}`.padStart(2, 0);
     const month = `${date.getMonth() + 1}`.padStart(2, 0); // beacuse it is zero based
-    const year = date.getFullYear(); 
+    const year = date.getFullYear();
     const displayDate = `${day}/${month}/${year}`;
     const html = `<div class="movements__row">
           <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
           <div class="movements__date">${displayDate}</div>
-          <div class="movements__value">${mov}€</div>`;
+          <div class="movements__value">${movement}€</div>`;
 
     containerMovements.insertAdjacentHTML("afterbegin", html);
   });
@@ -164,6 +169,7 @@ const updateUI = function (currentAccount) {
 ///Event Handler
 // Button Login
 let currentAccount;
+let timer;
 btnLogin.addEventListener("click", function (e) {
   //prevent form from submitting
   e.preventDefault();
@@ -187,7 +193,10 @@ btnLogin.addEventListener("click", function (e) {
     const min = `${now.getMinutes()}`.padStart(2, 0);
     labelDate.textContent = `${day}/${month}/${year}, ${hours}:${min}`;
     inputLoginUsername.value = inputLoginPin.value = "";
-
+    if(timer){
+      clearInterval(timer);
+    };
+    timer = setLogOutTimer();
     updateUI(currentAccount);
   }
 });
@@ -215,18 +224,26 @@ btnTransfer.addEventListener("click", function (e) {
   } else {
     console.log("Invalid entry");
   }
+  //reset timer
+  clearInterval(timer);
+  timer = setLogOutTimer();
 });
 
 btnLoan.addEventListener("click", function (e) {
   e.preventDefault();
   const amount = Number(inputLoanAmount.value);
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    currentAccount.movements.push(amount);
-     currentAccount.movementsDates.push(new Date().toISOString());
-    updateUI(currentAccount);
+    setTimeout(function () {
+      currentAccount.movements.push(amount);
+      currentAccount.movementsDates.push(new Date().toISOString());
+      updateUI(currentAccount);
+    },3000);
   }
   inputLoanAmount.value = "";
   console.log("Loan completed");
+    //reset timer
+  clearInterval(timer);
+  timer = setLogOutTimer();
 });
 
 btnClose.addEventListener("click", function (e) {
@@ -243,19 +260,42 @@ btnClose.addEventListener("click", function (e) {
     containerApp.style.opacity = 0;
   }
   inputCloseUsername.value = inputClosePin.value = "";
+  labelWelcome.textContent = "Log in to get started";
 });
 //Sort button
 let sorted = false; // stores the state of sort button , so that when clicked again it can go back in previous state,false means print movements as written in ternary operator
 btnSort.addEventListener("click", function (e) {
   e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
+  displayMovements(currentAccount, !sorted);
   sorted = !sorted;
 });
 
+const setLogOutTimer = function(){
+  const tick = function(){
+  const min = String(Math.trunc(time/60)).padStart(2,0);
+  const sec = String(time%60).padStart(2,0);
+  labelTimer.textContent = `${min}:${sec}`;
+
+  //when 0 sec, stop the timer and log out the user
+  if(time === 0){
+    clearInterval(timer);
+        labelWelcome.textContent = "Log in to get started";
+    containerApp.style.opacity = 0;
+  }
+    //decrease 1sec
+  time--;
+} 
+  //Set time to 5min
+  let time = 120;
+//Call the timer Everu Second // setInterval
+tick();
+const timer = setInterval(tick,1000);
+return timer;
+}
 /////Fake Always logged in
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 1;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 1;
 
 /////////////// Lectures Learning////////////////
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];

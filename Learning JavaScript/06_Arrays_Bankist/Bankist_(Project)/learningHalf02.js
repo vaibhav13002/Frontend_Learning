@@ -216,3 +216,11 @@ console.log(nums1); // [30, 10, 2]
 // console.log(arr); // [1, 2, 3, 4, 5]
 // (_, i) → means we're ignoring the first param and using the index i
 
+//////////setTimeout()
+const ingredients = ["olives","spinach"];
+const pizzaTimer = setTimeout((ing1,ing2)=>console.log(`Here is your pizza with ${ing1} and ${ing2}`),3000,...ingredients);
+console.log("waiting...");
+if(ingredients.includes("spinach")){
+  // clearTimeout(pizzaTimer); // time out ko cancel 
+  console.log("timeout clear");
+}
