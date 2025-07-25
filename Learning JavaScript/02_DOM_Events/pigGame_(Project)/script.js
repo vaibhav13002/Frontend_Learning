@@ -13,9 +13,14 @@ const btnNew = document.querySelector(".btn--new");
 const btnRoll = document.querySelector(".btn--roll");
 const btnHold = document.querySelector(".btn--hold");
 
+// Modal logic
+const howToPlayBtn = document.querySelector(".btn--howtoplay");
+const modal = document.querySelector(".modal");
+const closeModal = document.querySelector(".close");
+
 // Starting Conditions
 // Declaring the variables as Global
-let isPlaying,currentScore,activePlayer,score;
+let isPlaying, currentScore, activePlayer, score;
 const startCondition = function () {
   isPlaying = true;
   currentScore = 0;
@@ -31,6 +36,9 @@ const startCondition = function () {
   active1El.classList.remove("player--winner");
   active0El.classList.add("player--active");
   active1El.classList.remove("player--active");
+  // Hide both trophies
+  document.querySelector(".winner-trophy--0").classList.add("hidden");
+  document.querySelector(".winner-trophy--1").classList.add("hidden");
 };
 startCondition();
 
@@ -107,5 +115,26 @@ const iswinner = function () {
     document
       .querySelector(`.player--${activePlayer}`)
       .classList.remove("player--active");
+    // Show the trophy for the winner
+    document
+      .querySelector(`.winner-trophy--${activePlayer}`)
+      .classList.remove("hidden");
   }
 };
+
+// Show modal on button click
+howToPlayBtn.addEventListener("click", () => {
+  modal.classList.remove("hidden");
+});
+
+// Close modal when clicking on X
+closeModal.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+// Close modal when clicking outside modal content
+modal.addEventListener("click", e => {
+  if (e.target === modal) {
+    modal.classList.add("hidden");
+  }
+});
