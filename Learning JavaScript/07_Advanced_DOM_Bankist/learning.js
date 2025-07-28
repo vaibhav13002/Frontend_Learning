@@ -11,3 +11,58 @@ const images = document.getElementsByTagName("img");
 for (let i = 0; i < images.length; i++) {
   images[i].style.border = "2px solid red";
 }
+
+/////Event Bubbling
+/*🔹 Definition (Simple Words):
+Event bubbling is a process in which an event starts from the deepest (innermost) element and bubbles up to its parent elements, one by one.
+
+Matlab:
+Jab tum kisi element pe click karte ho, toh sirf ussi element pe nahi, uske parent, grandparent, etc. sab pe event listener activate ho sakta hai — agar lagaya ho toh.
+
+///////////////////
+🔹 What is IntersectionObserver?
+JavaScript ka ek built-in browser API jo detect karta hai:
+✅ "Koi element screen (viewport) me aa gaya ya nahi?"
+
+🧠 Simple Words:
+Tum bolte ho browser ko:
+"Yeh element pe nazar rakho. Jaise hi yeh viewport me dikhe ya gayab ho, mujhe batana!"
+
+✅ Basic Syntax:
+
+const observer = new IntersectionObserver(callback, options);
+observer.observe(targetElement);
+🔍 Breakdown:
+🔸 callback:
+Ek function jo run hota hai jab target element screen me visible ho ya ho chuka ho.
+
+(entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Element visible hai
+    }
+  });
+}
+🔸 options:
+Observer ka configuration object.
+
+{
+  root: null, // by default: viewport
+  threshold: 0.5 // 50% visible hone par trigger kare
+}
+
+//// aise bhi likh sktey h 
+const aboutSection = document.getElementById('about');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      console.log('About section is visible!');
+    }
+  });
+}, {
+  threshold: 0.5 // 50% visible hone par trigger hoga
+});
+
+observer.observe(aboutSection);
+*/
